@@ -1,11 +1,11 @@
 # Mongoctl Docker Image
 
-Mongoctl is a great tool for accessing many of the features of MongoDB while being able to use Mongo URLs. This docker image allows several capabilties:
+Mongoctl is a great tool for accessing many of the features of MongoDB while being able to use Mongo URLs. This docker image allows several capabilities:
 
 * You do not need to install MongoDB, mongo shell, or mongoctl (with Python support) on your system
 * You can access SSL and non-SSL connections using mongoctl
 
-For convenience, several bash script's are included in the image that allow you to use mongoctl more easily from the command line. Copy the scripts to a location on your path.
+For convenience, several bash scripts are included in the image that allow you to use mongoctl more easily from the command line. Copy the scripts to a location on your path.
 
 This command will copy the scripts off of the docker image into your current directory. You can then move the scripts to a location on your path.
 
