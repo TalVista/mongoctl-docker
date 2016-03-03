@@ -1,16 +1,16 @@
 FROM mongo:3.0
 
 RUN apt-get update \
-  && apt-get install --yes less procps wget build-essential python-dev python-pip \
+  && apt-get install --yes less procps curl build-essential python-dev python-pip \
   && apt-get clean
 
 COPY client-install.sh /usr/local/bin/
 
-RUN useradd --uid 501 --create-home --shell /bin/bash --groups staff mongoctl
+RUN useradd --create-home --shell /bin/bash --groups staff mongoctl
 
 WORKDIR /home/mongoctl
 
-# Because the mongoctl installer works much to hard to install these files and fails!
+# Because the mongoctl installer works much too hard to install these files and fails!
 COPY sample_conf/* .mongoctl/
 RUN chown mongoctl:mongoctl -R .mongoctl
 
