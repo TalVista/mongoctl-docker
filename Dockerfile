@@ -6,7 +6,7 @@ RUN apt-get update \
 
 COPY client-install.sh /usr/local/bin/
 
-RUN useradd --uid 501 --create-home --shell /bin/bash --groups staff mongoctl
+RUN useradd --create-home --shell /bin/bash --groups staff mongoctl
 
 WORKDIR /home/mongoctl
 
