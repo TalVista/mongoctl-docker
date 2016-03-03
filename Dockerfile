@@ -10,7 +10,7 @@ RUN useradd --create-home --shell /bin/bash --groups staff mongoctl
 
 WORKDIR /home/mongoctl
 
-# Because the mongoctl installer works much to hard to install these files and fails!
+# Because the mongoctl installer works much too hard to install these files and fails!
 COPY sample_conf/* .mongoctl/
 RUN chown mongoctl:mongoctl -R .mongoctl
 
