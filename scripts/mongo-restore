@@ -1,0 +1,33 @@
+#! /bin/bash
+# Usage: mongo-dump DESTINATION SOURCE [<options>]
+# where DESTINATION is a mongo URI
+# and SOURCE is a directory to use for the restore
+# and options are any additional options to mongo restore
+
+if [ $# -lt 2 ]; then
+  echo "Usage: $(basename $0) DESTINATION SOURCE" >&2
+  echo "    DESTINATION:  a Mongo URI" >&2
+  echo "    SOURCE:       the restore source directory" >&2
+  echo "    options:      see mongoctl restore for options" >&2
+  exit 1
+fi
+
+DESTINATION=${1}
+SOURCE=${2}
+shift 2
+OPTIONS=${@}
+
+# Make sure all relative data is removed.
+SOURCE=$(cd $SOURCE; pwd)
+
+SOURCEPATH=$(dirname $SOURCE)
+SOURCEDIR=$(basename $SOURCE)
+
+echo $SOURCEPATH
+echo $SOURCEDIR
+
+docker run --interactive --tty --rm \
+  --volume "${HOME}/.mongoctl:/root/.mongoctl" \
+  --volume "${SOURCEPATH}:/dumps" \
+  unitive/mongoctl \
+  restore ${OPTIONS} "${DESTINATION}" "/dumps/${SOURCEDIR}"

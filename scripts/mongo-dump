@@ -1,0 +1,22 @@
+#! /bin/bash
+# Usage: mongo-dump TARGET OUTDIR
+# where TARGET is a mongo URI
+# and OUTDIR is a directory to dump to
+
+if [ $# -ne 2 ]; then
+  echo "Usage: $(basename $0) TARGET OUTDIR" >&2
+  echo "    TARGET: a Mongo URI" >&2
+  echo "    OUTDIR: the dump output directory" >&2
+  exit 1
+fi
+
+TARGET=${1}
+
+# Make sure all relative data is removed.
+OUTDIR=$(cd $OUTDIR; pwd)
+
+docker run --interactive --tty --rm \
+  --volume "${HOME}/.mongoctl:/root/.mongoctl" \
+  --volume "${OUTDIR}:/dumps" \
+  unitive/mongoctl \
+  dump --out /dumps "${TARGET}"
