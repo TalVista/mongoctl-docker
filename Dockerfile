@@ -1,7 +1,7 @@
 FROM mongo:3.0
 
 RUN apt-get update \
-  && apt-get install --yes less procps build-essential python-dev python-pip \
+  && apt-get install --yes less procps wget build-essential python-dev python-pip \
   && apt-get clean
 
 COPY client-install.sh /usr/local/bin/
