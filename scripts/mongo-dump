@@ -17,7 +17,7 @@ OUTDIR=${2}
 OUTDIR=$(cd $OUTDIR; pwd)
 
 docker run --interactive --tty --rm \
-  --volume "${HOME}/.mongoctl:/root/.mongoctl" \
+  --volume "${HOME}/.mongoctl:/home/mongoctl/.mongoctl" \
   --volume "${OUTDIR}:/dumps" \
   unitive/mongoctl \
   dump --out /dumps "${TARGET}"

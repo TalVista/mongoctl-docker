@@ -46,13 +46,13 @@ You can access the shell of the container using:
 
 ```
 docker run --interactive --tty --rm \
-  --volume "${HOME}/.mongoctl:/root/.mongoctl" \
+  --volume "${HOME}/.mongoctl:/home/mongoctl/.mongoctl" \
   --entrypoint bash unitive/mongoctl
 ```
 
 or more commonly
 
 ```
-docker run -it --rm -v "${HOME}/.mongoctl:/root/.mongoctl" \
+docker run -it --rm -v "${HOME}/.mongoctl:/home/mongoctl/.mongoctl" \
   --entrypoint bash unitive/mongoctl
 ```

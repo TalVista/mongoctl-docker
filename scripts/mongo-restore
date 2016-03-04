@@ -27,7 +27,7 @@ echo $SOURCEPATH
 echo $SOURCEDIR
 
 docker run --interactive --tty --rm \
-  --volume "${HOME}/.mongoctl:/root/.mongoctl" \
+  --volume "${HOME}/.mongoctl:/home/mongoctl/.mongoctl" \
   --volume "${SOURCEPATH}:/dumps" \
   unitive/mongoctl \
   restore ${OPTIONS} "${DESTINATION}" "/dumps/${SOURCEDIR}"
