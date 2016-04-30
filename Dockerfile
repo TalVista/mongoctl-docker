@@ -1,7 +1,7 @@
 FROM mongo:3.0
 
 RUN apt-get update \
-  && apt-get install --yes less procps curl build-essential python-dev python-pip \
+  && apt-get install --yes less procps curl build-essential git python-dev python-pip \
   && apt-get clean
 
 COPY client-install.sh /usr/local/bin/
@@ -16,7 +16,7 @@ RUN chown mongoctl:mongoctl -R .mongoctl
 
 USER mongoctl
 
-RUN pip install mongoctl
+RUN pip install -e "git+https://github.com/unitive-inc/mongoctl.git@master#egg=mongoctl"
 
 # Include a non-ssl shell as a fall back for commands
 # install-mongodb installs that "latest-stable" according to the
