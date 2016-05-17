@@ -5,26 +5,29 @@
 # and options are any additional options to mongo restore
 
 if [ $# -lt 2 ]; then
-  echo "Usage: $(basename $0) DESTINATION SOURCE" >&2
+  echo "Usage: $(basename $0) DESTINATION SOURCE [options]" >&2
   echo "    DESTINATION:  a Mongo URI" >&2
   echo "    SOURCE:       the restore source directory" >&2
   echo "    options:      see mongoctl restore for options" >&2
   exit 1
 fi
 
-DESTINATION=${1}
-SOURCE=${2}
+DESTINATION="${1}"
+SOURCE="${2}"
 shift 2
 OPTIONS=${@}
 
 # Make sure all relative data is removed.
-SOURCE=$(cd $SOURCE; pwd)
-
-SOURCEPATH=$(dirname $SOURCE)
-SOURCEDIR=$(basename $SOURCE)
-
-echo $SOURCEPATH
-echo $SOURCEDIR
+if [ -d "$SOURCE" ]
+then
+  SOURCE=$(cd "$SOURCE"; pwd)
+  SOURCEPATH=$(dirname "$SOURCE")
+  SOURCEDIR=$(basename "$SOURCE")
+else
+  SOURCEPATH=$(dirname "$SOURCE")
+  SOURCEDIR=$(basename "$SOURCE")
+  SOURCEPATH=$(cd "$SOURCEPATH"; pwd)
+fi
 
 docker run --interactive --tty --rm \
   --volume "${HOME}/.mongoctl:/home/mongoctl/.mongoctl" \
