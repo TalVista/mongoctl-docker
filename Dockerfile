@@ -27,9 +27,12 @@ RUN mongoctl install-mongodb
 # Only full version labels are supported.
 RUN mongoctl install-mongodb 2.6.11
 
-# Make sure there is a version of 3.x
-# This may or may not be the same as lastest-stable.
+# Make sure there is a version of 3.0.x
 RUN mongoctl install-mongodb 3.0.9
+
+# Make sure there is a version of 3.2.x
+# This may or may not be the same as lastest-stable.
+RUN mongoctl install-mongodb 3.2.8
 
 COPY scripts /home/mongoctl/scripts/
 
