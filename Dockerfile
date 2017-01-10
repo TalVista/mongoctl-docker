@@ -32,7 +32,7 @@ RUN mongoctl install-mongodb 3.0.9
 
 # Make sure there is a version of 3.2.x
 # This may or may not be the same as lastest-stable.
-RUN mongoctl install-mongodb 3.2.8
+RUN mongoctl install-mongodb 3.2.11
 
 COPY scripts /home/mongoctl/scripts/
 
